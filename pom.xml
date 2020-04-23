@@ -3,7 +3,7 @@
 
 	<artifactId>chemical-typesystem</artifactId>
 	<name>${project.artifactId}</name>
-	<version>0.1.0</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<description>Typesystem for chemical information.</description>
 
 	<parent>
@@ -32,7 +32,7 @@
 		<connection>scm:git:git://github.com/averbis/chemical-typesystem</connection>
 		<developerConnection>scm:git:git@github.com:averbis/chemical-typesystem.git</developerConnection>
 		<url>https://github.com/averbis/chemical-typesystem</url>
-		<tag>chemical-typesystem-0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 	
 	<properties>
