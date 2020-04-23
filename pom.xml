@@ -12,6 +12,29 @@
 		<version>3.22.0</version>
 	</parent>
 	
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<developers>
+	    <developer>
+			<email>info@averbis.com</email>
+			<organization>Averbis</organization>
+			<organizationUrl>https://averbis.com/</organizationUrl>
+		</developer>
+	</developers>
+	
+	<scm>
+		<connection>scm:git:git://github.com/averbis/chemical-typesystem</connection>
+		<developerConnection>scm:git:git@github.com:averbis/chemical-typesystem.git</developerConnection>
+		<url>https://github.com/averbis/chemical-typesystem</url>
+		<tag>HEAD</tag>
+	</scm>
+	
 	<properties>
 		<core-typesystems-version>3.23.2</core-typesystems-version>
 		<typesystem-stylesheet-location>${basedir}/src/main/doc/typesystem.xslt</typesystem-stylesheet-location>
