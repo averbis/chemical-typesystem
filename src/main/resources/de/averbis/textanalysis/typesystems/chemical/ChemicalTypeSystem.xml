@@ -1,128 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
-	<name>de.averbis.textanalysis.typesystems.chemical.ChemicalTypeSystem</name>
-	<description>Typesystem used to represent chemical information.</description>
-	<version>${project.version}</version>
-	<vendor>Averbis GmbH</vendor>
-	<imports>
-		<import name="de.averbis.textanalysis.typesystems.AverbisTypeSystem"/>
-		<import name="de.averbis.textanalysis.typesystems.MeasurementTypeSystem"/>
-	</imports>
-	<types>
+  <name>de.averbis.textanalysis.typesystems.chemical.ChemicalTypeSystem</name>
+  <description>Typesystem used to represent chemical information.</description>
+  <version>${project.version}</version>
+  <vendor>Averbis GmbH</vendor>
+  <imports>
+    <import name="de.averbis.extraction.types.AverbisTypeSystem"/>
+    <import name="de.averbis.textanalysis.types.measurement.MeasurementTypeSystem"/>
+  </imports>
+  <types>
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ChemicalMention</name>
+      <description>Mention of a chemical entity.</description>
+      <supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>kind</name>
+          <description>Additional information about the kind.</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ChemicalCompound</name>
+      <description>Mention of a chemical compound.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ReactionName</name>
+      <description>Mention of a reaction.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.Enzyme</name>
+      <description>Mention of an enzyme.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ChemicalAdjective</name>
+      <description>Mention of a chemical adjective.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
+    </typeDescription>
+    
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.Molecule</name>
+      <description>Mention of a molecule.</description>
+      <supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>role</name>
+          <description>Additional information about the role, e.g., "Solvent"</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>compounds</name>
+          <description>Additional information about the chemial compounds.</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>de.averbis.textanalysis.types.chemical.ChemicalCompound</elementType>
+          <multipleReferencesAllowed>true</multipleReferencesAllowed>
+        </featureDescription>
+        <featureDescription>
+          <name>quantity</name>
+          <description>Aditional quantity.</description>
+          <rangeTypeName>de.averbis.textanalysis.types.chemical.ChemicalQuantity</rangeTypeName>
+              </featureDescription>
+      </features>
+    </typeDescription>
+    
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ChemicalQuantity</name>
+      <description>A chemical quantity.</description>
+      <supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>mass</name>
+          <description>Mass given as a measurement.</description>
+          <rangeTypeName>de.averbis.textanalysis.types.measurement.Measurement</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>volume</name>
+          <description>Volume given as a measurement.</description>
+          <rangeTypeName>de.averbis.textanalysis.types.measurement.Measurement</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>molar</name>
+          <description>Molar given as a measurement.</description>
+          <rangeTypeName>de.averbis.textanalysis.types.measurement.Measurement</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
 
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ChemicalMention</name>
-			<description>Mention of a chemical entity.</description>
-			<supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
-			<features>
-				<featureDescription>
-					<name>kind</name>
-					<description>Additional information about the kind.</description>
-					<rangeTypeName>uima.cas.String</rangeTypeName>
-				</featureDescription>
-			</features>
-		</typeDescription>
-		
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ChemicalCompound</name>
-			<description>Mention of a chemical compound.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
-		</typeDescription>
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ReactionName</name>
-			<description>Mention of a reaction.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
-		</typeDescription>
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.Enzyme</name>
-			<description>Mention of an enzyme.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
-		</typeDescription>
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ChemicalAdjective</name>
-			<description>Mention of a chemical adjective.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalMention</supertypeName>
-		</typeDescription>
-		
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.Molecule</name>
-			<description>Mention of a molecule.</description>
-			<supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
-			<features>
-				<featureDescription>
-					<name>role</name>
-					<description>Additional information about the role, e.g., "Solvent"</description>
-					<rangeTypeName>uima.cas.String</rangeTypeName>
-				</featureDescription>
-				<featureDescription>
-					<name>compounds</name>
-					<description>Additional information about the chemial compounds.</description>
-					<rangeTypeName>uima.cas.FSArray</rangeTypeName>
-				  <elementType>de.averbis.textanalysis.types.chemical.ChemicalCompound</elementType>
-				  <multipleReferencesAllowed>true</multipleReferencesAllowed>
-				</featureDescription>
-				<featureDescription>
-					<name>quantity</name>
-					<description>Aditional quantity.</description>
-					<rangeTypeName>de.averbis.textanalysis.types.chemical.ChemicalQuantity</rangeTypeName>
-        			</featureDescription>
-			</features>
-		</typeDescription>
-		
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ChemicalQuantity</name>
-			<description>A chemical quantity.</description>
-			<supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
-			<features>
-				<featureDescription>
-					<name>mass</name>
-					<description>Mass given as a measurement.</description>
-					<rangeTypeName>de.averbis.textanalysis.types.measurement.Measurement</rangeTypeName>
-				</featureDescription>
-				<featureDescription>
-					<name>volume</name>
-					<description>Volume given as a measurement.</description>
-					<rangeTypeName>de.averbis.textanalysis.types.measurement.Measurement</rangeTypeName>
-				</featureDescription>
-				<featureDescription>
-					<name>molar</name>
-					<description>Molar given as a measurement.</description>
-					<rangeTypeName>de.averbis.textanalysis.types.measurement.Measurement</rangeTypeName>
-				</featureDescription>
-			</features>
-		</typeDescription>
 
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ChemicalPhrase</name>
+      <description>Mention of a chemical phrase.</description>
+      <supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
+    </typeDescription>
+    
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.TemperaturePhrase</name>
+      <description>Mention of a temperature phrase.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalPhrase</supertypeName>
+    </typeDescription>
 
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ChemicalPhrase</name>
-			<description>Mention of a chemical phrase.</description>
-			<supertypeName>de.averbis.extraction.types.CoreAnnotation</supertypeName>
-		</typeDescription>
-		
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.TemperaturePhrase</name>
-			<description>Mention of a temperature phrase.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalPhrase</supertypeName>
-		</typeDescription>
-
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.TimePhrase</name>
-			<description>Mention of a time phrase.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalPhrase</supertypeName>
-		</typeDescription>
-		
-		<typeDescription>
-			<name>de.averbis.textanalysis.types.chemical.ActionPhrase</name>
-			<description>Mention of an action phrase.</description>
-			<supertypeName>de.averbis.textanalysis.types.chemical.ChemicalPhrase</supertypeName>
-			<features>
-				<featureDescription>
-					<name>kind</name>
-					<description>Action kind.</description>
-					<rangeTypeName>uima.cas.String</rangeTypeName>
-				</featureDescription>
-			</features>
-		</typeDescription>
-
-	</types>
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.TimePhrase</name>
+      <description>Mention of a time phrase.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalPhrase</supertypeName>
+    </typeDescription>
+    
+    <typeDescription>
+      <name>de.averbis.textanalysis.types.chemical.ActionPhrase</name>
+      <description>Mention of an action phrase.</description>
+      <supertypeName>de.averbis.textanalysis.types.chemical.ChemicalPhrase</supertypeName>
+      <features>
+        <featureDescription>
+          <name>kind</name>
+          <description>Action kind.</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
 </typeSystemDescription>

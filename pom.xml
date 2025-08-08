@@ -1,17 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<artifactId>chemical-typesystem</artifactId>
-	<name>${project.artifactId}</name>
-	<version>0.2.0-SNAPSHOT</version>
-	<description>Typesystem for chemical information.</description>
 
 	<parent>
 		<groupId>de.averbis.textanalysis</groupId>
 		<artifactId>parent-pom-typesystems</artifactId>
-		<version>3.22.0</version>
+		<version>4.3.0</version>
 	</parent>
-	
+
+	<artifactId>chemical-typesystem</artifactId>
+	<version>0.2.0-SNAPSHOT</version>
+
+	<name>Averbis Chemical Type System</name>
+	<description>Typesystem for chemical information.</description>
+
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -19,85 +22,195 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	
+
+	<properties>
+		<bnd-annotation-version>7.1.0</bnd-annotation-version>
+		<uima-version>3.6.0</uima-version>
+		<ruta-version>3.5.0</ruta-version>
+		<core-typesystems-version>4.12.0</core-typesystems-version>
+		<junit-jupiter-version>5.11.4</junit-jupiter-version>
+		<junit-platform-version>1.11.4</junit-platform-version>
+		<assertj-version>3.27.4</assertj-version>
+		<slf4j-version>2.0.17</slf4j-version>
+	</properties>
+
 	<developers>
-	    <developer>
+		<developer>
+			<id>averbis</id>
 			<email>info@averbis.com</email>
 			<organization>Averbis</organization>
 			<organizationUrl>https://averbis.com/</organizationUrl>
 		</developer>
 	</developers>
-	
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/averbis/chemical-typesystems</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<scm>
 		<connection>scm:git:git://github.com/averbis/chemical-typesystem</connection>
 		<developerConnection>scm:git:git@github.com:averbis/chemical-typesystem.git</developerConnection>
 		<url>https://github.com/averbis/chemical-typesystem</url>
 		<tag>HEAD</tag>
 	</scm>
-	
-	<properties>
-		<core-typesystems-version>3.23.2</core-typesystems-version>
-		<typesystem-stylesheet-location>${basedir}/src/main/doc/typesystem.xslt</typesystem-stylesheet-location>
-	</properties>
-	
+
+	<repositories>
+		<repository>
+			<id>github-parent-pom-typesystems</id>
+			<url>https://maven.pkg.github.com/averbis/parent-pom-typesystems</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>github-core-typesystems</id>
+			<url>https://maven.pkg.github.com/averbis/core-typesystems</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
-	
 		<dependency>
 			<groupId>org.apache.uima</groupId>
 			<artifactId>uimaj-core</artifactId>
-			<version>${uima-version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>de.averbis.textanalysis</groupId>
 			<artifactId>components-core-typesystem</artifactId>
-			<version>${core-typesystems-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>de.averbis.textanalysis</groupId>
 			<artifactId>numeric-value-typesystem</artifactId>
-			<version>${core-typesystems-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>de.averbis.textanalysis</groupId>
 			<artifactId>measurement-typesystem</artifactId>
-			<version>${core-typesystems-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>biz.aQute.bnd</groupId>
+			<artifactId>biz.aQute.bnd.annotation</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimafit-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-	
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>${junit-jupiter-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.uima</groupId>
+				<artifactId>uimaj-bom</artifactId>
+				<version>${uima-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-bom</artifactId>
+				<version>${assertj-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-bom</artifactId>
+				<version>${slf4j-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>biz.aQute.bnd</groupId>
+				<artifactId>biz.aQute.bnd.annotation</artifactId>
+				<version>${bnd-annotation-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.averbis.textanalysis</groupId>
+				<artifactId>core-typesystems-bom</artifactId>
+				<version>${core-typesystems-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>xml-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.uima</groupId>
-				<artifactId>jcasgen-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<typeSystemIncludes>
-							    <typeSystemInclude>src/main/resources/de/averbis/textanalysis/typesystems/chemical/ChemicalTypeSystem.xml</typeSystemInclude>
-							</typeSystemIncludes>
-							<limitToProject>true</limitToProject>
-						</configuration>
-					</execution>
-				</executions>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.jupiter</groupId>
+						<artifactId>junit-jupiter-engine</artifactId>
+						<version>${junit-jupiter-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-commons</artifactId>
+						<version>${junit-platform-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-engine</artifactId>
+						<version>${junit-platform-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-launcher</artifactId>
+						<version>${junit-platform-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-suite-engine</artifactId>
+						<version>${junit-platform-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-suite-api</artifactId>
+						<version>${junit-platform-version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
